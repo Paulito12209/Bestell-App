@@ -1,0 +1,12 @@
+// Variablen festlegen
+
+// FUNKTIONEN:
+// - INIT FUNKTION
+// - RENDER FUNKTION
+// - LÖSCHEN FUNKTION
+
+// - RECHNEN
+
+// - DIALOG ÖFFNEN
+
+// - TEMPLATES
