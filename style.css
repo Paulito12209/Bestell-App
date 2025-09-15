@@ -74,34 +74,47 @@ section span {
   height: 24px;
 }
 
-.menu_card {
+.category_cover img {
+height: 160px;
+width: 100%;
+object-fit: cover;
+}
+
+.category_cover h3 {
+padding-left: 24px;
+}
+
+.menu_container {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.dish_box {
+.menu_box {
   display: flex;
   justify-content: space-between;
   border: 1px solid#F1DECF;
 }
 
-.dish_box_bg_color {
-  background-color: #ffe9d1;
-}
-
-.dish_box button {
+.menu_box button {
   height: 24px;
   color: #ff8000;
   background-color: white;
-  border: 1px solid#F1DECF;
+  border-bottom: 1px solid#F1DECF;
+  border-left: 1px solid#F1DECF;
+  border-top: none;
+  border-right: none;
+  /* border: 1px solid#F1DECF; <- kompletter Rand*/ 
 }
 
-.dish_box_info {
-  padding: 8px;
+.menu_info {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px 16px 24px;
+  gap: 8px;
 }
 
-.price {
+.menu_price {
   color: #f08833;
   font-weight: bold;
 }

@@ -1,7 +1,7 @@
 /* = SHOPPING CART = */
 .shopping_cart {
-  width: 25%;
-  min-width: 300px;
+min-width: 300px;
+max-width: 400px;
 }
 
 .shopping_cart_divider {
