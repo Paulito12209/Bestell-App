@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.widescreen_1440 {
+max-width: 1440px;
+margin: 0 auto;
+}
+
+.paddings {
+padding: 40px 120px;
+}
+
+/* === HEADER === */
+header {
+background-color: #FF8000;
+}
+
+header img {
+height: 40px;
+}
