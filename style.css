@@ -7,19 +7,48 @@ header img {
   height: 40px;
 }
 
-/* === MAIN-CONTENT === */
-.main_content {
+.navigation {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.restaurant_card {
+/* === MAIN-CONTENT === */
+.main_container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main_content {
   width: 75%;
 }
 
-.restaurant_image {
+.restaurant_cover {
   height: 300px;
   width: 100%;
   object-fit: cover;
+  position: relative;
+}
+
+.restaurant_logo {
+  position: absolute;
+  top: 340px;
+  left: 36.66%;
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.restaurant_card {
+  background-color: rgb(253, 252, 251);
+}
+
+.restaurant_info {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 16px;
 }
 
 section h1 {
@@ -33,7 +62,7 @@ section span {
   color: #ff8000;
 }
 
-.meals {
+.categories {
   background-color: #faf5f3;
   display: flex;
   align-items: center;
@@ -41,7 +70,7 @@ section span {
   padding: 8px;
 }
 
-.meals img {
+.categories img {
   height: 24px;
 }
 
@@ -75,4 +104,13 @@ section span {
 .price {
   color: #f08833;
   font-weight: bold;
+}
+
+/* == FOOTER === */
+footer {
+  background-color: black;
+}
+
+footer img {
+  height: 40px;
 }
