@@ -34,6 +34,6 @@ let menuItems = [
     id: 6,
     name: "Dim Sum Platte",
     description: "gedämpfte Teigtaschen mit Schweinefleisch und Garnelen",
-    price: 13.5,
+    price: 13.50,
   },
 ];
