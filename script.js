@@ -5,8 +5,10 @@ let cartAmount = [];
 
 // === INIT FUNKTION ===
 function init() {
+  getFromLocalStorage();
   renderMenuItems();
   renderCart();
+  updateCartCostSummary();
 }
 
 // - RENDER FUNKTION: GERICHTE
