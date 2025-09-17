@@ -1,24 +1,40 @@
-// Variablen festlegen
-
-// FUNKTIONEN:
-// - INIT FUNKTION
-function init(){
-
+// === INIT FUNKTION ===
+function init() {
+  renderMenuItems();
 }
 
 // - RENDER FUNKTION: GERICHTE
 function renderMenuItems() {
-  let menuRef = document.getElementById("gallery_content");
-  menuRef.innerHTML = "";
+  let menuListRef = document.getElementById("menu_list");
+  menuListRef.innerHTML = "";
 
-  for (let i = 0; i < menu.length; i++) {
-    menuRef.innerHTML += getMenuItem(i);
+  for (
+    let menuItemsIndex = 0;
+    menuItemsIndex < menuItems.length;
+    menuItemsIndex++
+  ) {
+    menuListRef.innerHTML += getMenuItem(menuItemsIndex);
   }
 }
 
 // - RENDER FUNKTION: WARENKORB?
 
-// - TEMPLATES
+// === TEMPLATE FUNKTIONEN ===
+function getMenuItem(menuItemsIndex) {
+  return `<div class="menu_container">
+              <div class="menu_box">
+                <div class="menu_info">
+                  <h3>${menuItems[menuItemsIndex].name}</h3>
+                  <p>${menuItems[menuItemsIndex].description}</p>
+                  <p class="menu_price">${menuItems[
+                    menuItemsIndex
+                  ].price.toFixed(2)} €</p>
+                </div>
+                <!-- BUTTON ZUM HINZUFÜGEN -->
+                <button>+</button>
+              </div>
+            </div>`;
+}
 
 // - LÖSCHEN FUNKTION
 

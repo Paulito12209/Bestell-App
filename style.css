@@ -74,13 +74,13 @@ section span {
 }
 
 .category_cover img {
-height: 160px;
-width: 100%;
-object-fit: cover;
+  height: 160px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .category_cover h3 {
-padding-left: 24px;
+  padding-left: 24px;
 }
 
 .menu_container {
@@ -103,7 +103,7 @@ padding-left: 24px;
   border-left: 1px solid#F1DECF;
   border-top: none;
   border-right: none;
-  /* border: 1px solid#F1DECF; <- kompletter Rand*/ 
+  /* border: 1px solid#F1DECF; <- kompletter Rand*/
 }
 
 .menu_info {

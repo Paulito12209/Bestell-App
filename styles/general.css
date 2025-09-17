@@ -14,5 +14,9 @@
 }
 
 .menu_paddings {
-  padding: 0px 40px 8px 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 40px 40px 40px;
+  gap: 8px;
+  flex-grow: 1;
 }

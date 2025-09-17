@@ -40,7 +40,7 @@
           <!-- Div mit Paddings -->
           <div class="paddings restaurant_info">
             <h1>China Restaurant</h1>
-            <span>Bewertung (4,2 von 4 Sternen)</span>
+            <span>Bewertung (4,2 von 5 Sternen)</span>
           </div>
           <hr />
           <!-- Div mit Kategorien (falls Zeit übrig bleibt) -->
@@ -71,6 +71,7 @@
                 <button>+</button>
               </div>
             </div>
+            <!-- MENU CARD "ENDE"-->
           </div>
         </div>
       </section>
@@ -85,13 +86,15 @@
               <h3>Pizza Krabben</h3>
               <div class="cart_options">
                 <div class="cart_buttons">
-                  <button><img src="assets/icons/remove.png" alt=""></button>
+                  <button><img src="assets/icons/remove.png" alt="" /></button>
                   <p>3</p>
-                  <button><img src="assets/icons/add.png" alt=""></button>
+                  <button><img src="assets/icons/add.png" alt="" /></button>
                 </div>
                 <div class="cart_buttons">
                   <p>28.50 €</p>
-                  <button><img src="assets/icons/trash-can.png" alt=""></button>
+                  <button>
+                    <img src="assets/icons/trash-can.png" alt="" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -113,11 +116,14 @@
         </div>
       </section>
       <dialog onclick="showCart()">
-      <!-- WARENKORB wird nach Klick gerendert-->
+        <!-- WARENKORB wird nach Klick gerendert-->
       </dialog>
     </main>
     <footer class="paddings">
       <img src="assets/icons/android-chrome-512x512.png" alt="" />
     </footer>
+    <script src="scripts/db.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
