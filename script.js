@@ -1,6 +1,11 @@
+// === VARIABLEN ===
+let menuItemsIndex = 0;
+let cartItems = [];
+
 // === INIT FUNKTION ===
 function init() {
   renderMenuItems();
+  renderCart();
 }
 
 // - RENDER FUNKTION: GERICHTE
@@ -17,7 +22,19 @@ function renderMenuItems() {
   }
 }
 
-// - RENDER FUNKTION: WARENKORB?
+// - RENDER FUNKTION: WARENKORB
+function renderCart() {
+  let cartListRef = document.getElementById("cart_list");
+  cartListRef.innerHTML = "";
+
+  for (
+    let menuItemsIndex = 0;
+    menuItemsIndex < cartItems.length;
+    menuItemsIndex++
+  ) {
+    cartListRef.innerHTML += getCartItem(menuItemsIndex);
+  }
+}
 
 // === TEMPLATE FUNKTIONEN ===
 function getMenuItem(menuItemsIndex) {
@@ -31,7 +48,7 @@ function getMenuItem(menuItemsIndex) {
                   ].price.toFixed(2)} €</p>
                 </div>
                 <!-- BUTTON ZUM HINZUFÜGEN -->
-                <button>+</button>
+                <button onclick="renderCart()">+</button>
               </div>
             </div>`;
 }
