@@ -1,4 +1,3 @@
-
 // === VARIABLEN ===
 let cartItems = [];
 let cartAmount = [];
@@ -18,9 +17,11 @@ function saveToLocalStorage() {
 }
 
 function getFromLocalStorage() {
-  if (JSON.parse(localStorage.getItem("cartItems")) != null) {
-    cartItems = JSON.parse(localStorage.getItem("cartItems"));
-    cartAmount = JSON.parse(localStorage.getItem("cartItems"));
+  let items = JSON.parse(localStorage.getItem("cartItems"));
+  let Amount = JSON.parse(localStorage.getItem("cartItems"));
+  if (items && Amount) {
+    cartItems = items;
+    cartAmount = Amount;
   }
 }
 

@@ -96,7 +96,8 @@ section span {
 }
 
 .menu_box button {
-  height: 24px;
+  height: 32px;
+  width: 32px;
   color: #ff8000;
   background-color: white;
   border-bottom: 1px solid#F1DECF;
