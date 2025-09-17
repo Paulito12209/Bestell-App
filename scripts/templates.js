@@ -10,7 +10,7 @@ function getMenuItem(menuItemsIndex) {
                   ].price.toFixed(2)} €</p>
                 </div>
                 <!-- BUTTON ZUM HINZUFÜGEN -->
-                <button onclick="renderCart()">+</button>
+                <button onclick="addToCart(${menuItemsIndex})">+</button>
               </div>
             </div>`;
 }

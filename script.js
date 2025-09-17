@@ -37,6 +37,30 @@ function renderCart() {
   }
 }
 
+// === WARENKORB FUNKTIONEN ===
+function addToCart(ItemsIndex) {
+  let menuItem = menuItems[ItemsIndex];
+
+  let cartIndex = -1;
+  for (
+    let menuItemsIndex = 0;
+    menuItemsIndex < cartItems.length;
+    menuItemsIndex++
+  ) {
+    if (cartItems[menuItemsIndex].id == menuItem.id) {
+      cartIndex = menuItemsIndex;
+      break;
+    }
+  }
+
+  if (cartIndex >= 0) {
+    cartAmount[cartIndex]++;
+  } else {
+    cartItems.push(menuItem);
+    cartAmount.push(1);
+  }
+}
+
 // - LÖSCHEN FUNKTION
 
 // - RECHNEN
