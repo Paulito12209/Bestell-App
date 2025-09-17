@@ -111,14 +111,15 @@ function updateCartCostSummary() {
     menuItemsIndex < cartItems.length;
     menuItemsIndex++
   ) {
-    sumSubTotal += cartItems[menuItemsIndex].price * cartAmount[i];
+    sumSubTotal += cartItems[menuItemsIndex].price * cartAmount[menuItemsIndex];
   }
 
   let deliveryCost = 5.0;
-  let total = sumSubTotal + deliveryCost;
+  let sumTotal = sumSubTotal + deliveryCost;
+  let subTotal = document.getElementById("sumSubTotal");
+  let total = document.getElementById("total")
 
-  document.getElementById("sumSubTotal").innerHTML =
-    sumSubTotal.toFixed(2) + "€";
-  document.getElementById("total").innerHTML = total.toFixed(2) + "€";
+  if(subTotal) subTotal.innerHTML = sumSubTotal.toFixed(2) +"€";
+  if(total) total.innerHTML = sumTotal.toFixed(2) +"€";
 }
 // - DIALOG ÖFFNEN
