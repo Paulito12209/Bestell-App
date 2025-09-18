@@ -3,20 +3,17 @@
   scroll-behavior: smooth;
   font-family: Arial, Helvetica, sans-serif;
 }
-
 .widescreen_1440 {
   max-width: 1440px;
   margin: 0 auto;
 }
-
 .paddings {
   padding: 20px 40px;
 }
-
 .menu_paddings {
   display: flex;
   flex-direction: column;
-  padding: 0px 40px 40px 40px;
+  padding: 0 40px 40px 40px;
   gap: 8px;
   flex-grow: 1;
 }
