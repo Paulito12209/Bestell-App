@@ -1,43 +1,34 @@
-// Variablen
-let cartItems = [];
-let cartAmount = [];
+// === Variablen ===
+let cartItems = []; // Artikel im Warenkorb
+let cartAmounts = []; // Mengen passend zu cartItems
 
 function init() {
-  getFromLocalStorage();
-  renderMenuItems();
-  renderCart();
+  loadFromStorage();
+  renderMenu();
+  renderCartDesktop();
   renderCartDialog();
   renderCartSummary();
   updateMobileCartButton();
 }
 
-// Local Storage
-function saveToLocalStorage() {
-  try {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    localStorage.setItem("cartAmount", JSON.stringify(cartAmount));
-  } catch (e) {}
+/* === Local Storage === */
+
+function saveToStorage() {
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  localStorage.setItem("cartAmounts", JSON.stringify(cartAmounts));
 }
 
-function getFromLocalStorage() {
+function loadFromStorage() {
   let itemsText = localStorage.getItem("cartItems");
-  let amountsText = localStorage.getItem("cartAmount");
+  let amountsText = localStorage.getItem("cartAmounts");
   let items = [];
   let amounts = [];
 
   if (itemsText) {
-    try {
-      items = JSON.parse(itemsText);
-    } catch (e) {
-      items = [];
-    }
+    items = JSON.parse(itemsText);
   }
   if (amountsText) {
-    try {
-      amounts = JSON.parse(amountsText);
-    } catch (e) {
-      amounts = [];
-    }
+    amounts = JSON.parse(amountsText);
   }
 
   if (items && typeof items.length === "number") {
@@ -46,90 +37,103 @@ function getFromLocalStorage() {
     cartItems = [];
   }
   if (amounts && typeof amounts.length === "number") {
-    cartAmount = amounts;
+    cartAmounts = amounts;
   } else {
-    cartAmount = [];
+    cartAmounts = [];
   }
 
-  if (cartItems.length !== cartAmount.length) {
+  // Sicherheitscheck
+  if (cartItems.length !== cartAmounts.length) {
     cartItems = [];
-    cartAmount = [];
+    cartAmounts = [];
   }
 }
 
-// Menü
-function renderMenuItems() {
-  let list = document.getElementById("menu_list");
-  if (!list) {
+/* === Menü === */
+
+function renderMenu() {
+  let menuListRef = document.getElementById("menu_list");
+  if (!menuListRef) {
     return;
   }
-  list.innerHTML = "";
-  for (let i = 0; i < menuItems.length; i++) {
-    list.innerHTML += getMenuItem(i);
+  menuListRef.innerHTML = "";
+  for (let index = 0; index < menuItems.length; index++) {
+    menuListRef.innerHTML += getMenuItem(index);
   }
 }
 
-// Cart Desktop
-function renderCart() {
-  let list = document.getElementById("cart_list");
-  if (!list) {
+/* === Warenkorb Desktop === */
+
+function renderCartDesktop() {
+  let cartListRef = document.getElementById("cart_list");
+  if (!cartListRef) {
     return;
   }
-  list.innerHTML = "";
+  cartListRef.innerHTML = "";
 
   if (cartItems.length === 0) {
-    list.innerHTML = '<div class="empty_cart">Dein Warenkorb ist leer.</div>';
-    let actions = document.getElementById("order_actions");
-    if (actions) {
-      actions.innerHTML = "";
+    cartListRef.innerHTML =
+      '<div class="empty_cart">Dein Warenkorb ist leer.</div>';
+    let actionsRef = document.getElementById("order_actions");
+    if (actionsRef) {
+      actionsRef.innerHTML = "";
     }
     return;
   }
 
-  for (let i = 0; i < cartItems.length; i++) {
-    list.innerHTML += getCartItem(i);
+  for (let index = 0; index < cartItems.length; index++) {
+    cartListRef.innerHTML += getCartItem(index);
   }
 
-  let actions = document.getElementById("order_actions");
-  if (actions) {
-    actions.innerHTML =
-      '\n      <div class="cart_divider"></div>\n      <div class="cart_buttons paddings">\n        <button onclick="placeOrder()">Bestellen</button>\n      </div>';
+  let actionsRef = document.getElementById("order_actions");
+  if (actionsRef) {
+    actionsRef.innerHTML =
+      '\n<div class="cart_divider"></div>\n' +
+      '<div class="cart_buttons paddings">\n' +
+      '  <button onclick="placeOrder()">Bestellen</button>\n' +
+      "</div>";
   }
 }
 
-// Cart Dialog (mobil)
+/* === Warenkorb Dialog (mobil) === */
+
 function renderCartDialog() {
-  let list = document.getElementById("cart_list_dialog");
-  if (!list) {
+  let dialogListRef = document.getElementById("cart_list_dialog");
+  if (!dialogListRef) {
     return;
   }
-  list.innerHTML = "";
+  dialogListRef.innerHTML = "";
 
   if (cartItems.length === 0) {
-    list.innerHTML = '<div class="empty_cart">Dein Warenkorb ist leer.</div>';
-    let actions = document.getElementById("order_actions_dialog");
-    if (actions) {
-      actions.innerHTML = "";
+    dialogListRef.innerHTML =
+      '<div class="empty_cart">Dein Warenkorb ist leer.</div>';
+    let actionsDialogRef = document.getElementById("order_actions_dialog");
+    if (actionsDialogRef) {
+      actionsDialogRef.innerHTML = "";
     }
     return;
   }
 
-  for (let i = 0; i < cartItems.length; i++) {
-    list.innerHTML += getCartItem(i);
+  for (let index = 0; index < cartItems.length; index++) {
+    dialogListRef.innerHTML += getCartItem(index);
   }
 
-  let actions = document.getElementById("order_actions_dialog");
-  if (actions) {
-    actions.innerHTML =
-      '\n      <div class="cart_divider"></div>\n      <div class="cart_buttons paddings">\n        <button onclick="placeOrder()">Bestellen</button>\n      </div>';
+  let actionsDialogRef = document.getElementById("order_actions_dialog");
+  if (actionsDialogRef) {
+    actionsDialogRef.innerHTML =
+      '\n<div class="cart_divider"></div>\n' +
+      '<div class="cart_buttons paddings">\n' +
+      '  <button onclick="placeOrder()">Bestellen</button>\n' +
+      "</div>";
   }
 }
 
-// Summary
+/* === Zusammenfassung === */
+
 function renderCartSummary() {
   let subtotal = 0;
-  for (let i = 0; i < cartItems.length; i++) {
-    subtotal = subtotal + cartItems[i].price * cartAmount[i];
+  for (let index = 0; index < cartItems.length; index++) {
+    subtotal = subtotal + cartItems[index].price * cartAmounts[index];
   }
   let shipping = 0;
   if (cartItems.length > 0) {
@@ -137,133 +141,151 @@ function renderCartSummary() {
   }
   let total = subtotal + shipping;
 
-  let costs = document.getElementById("cart_costs");
-  if (costs) {
-    costs.innerHTML =
-      '\n      <div class="cart_subtotal"><p>Zwischensumme</p><p>' +
+  let cartCosts = document.getElementById("cart_costs");
+  if (cartCosts) {
+    cartCosts.innerHTML =
+      '\n<div class="cart_subtotal"><p>Zwischensumme</p><p>' +
       subtotal.toFixed(2) +
-      ' €</p></div>\n      <div class="cart_shipping_costs"><p>Lieferkosten</p><p>' +
+      " €</p></div>\n" +
+      '<div class="cart_shipping_costs"><p>Lieferkosten</p><p>' +
       shipping.toFixed(2) +
-      ' €</p></div>\n      <div class="cart_total"><h3>Gesamt</h3><h3>' +
+      " €</p></div>\n" +
+      '<div class="cart_total"><h3>Gesamt</h3><h3>' +
       total.toFixed(2) +
-      " €</h3></div>\n    ";
+      " €</h3></div>\n";
   }
 
-  let costsD = document.getElementById("cart_costs_dialog");
-  if (costsD) {
-    costsD.innerHTML =
-      '\n      <div class="cart_subtotal"><p>Zwischensumme</p><p>' +
+  let cartCostsDialog = document.getElementById("cart_costs_dialog");
+  if (cartCostsDialog) {
+    cartCostsDialog.innerHTML =
+      '\n<div class="cart_subtotal"><p>Zwischensumme</p><p>' +
       subtotal.toFixed(2) +
-      ' €</p></div>\n      <div class="cart_shipping_costs"><p>Lieferkosten</p><p>' +
+      " €</p></div>\n" +
+      '<div class="cart_shipping_costs"><p>Lieferkosten</p><p>' +
       shipping.toFixed(2) +
-      ' €</p></div>\n      <div class="cart_total"><h3>Gesamt</h3><h3>' +
+      " €</p></div>\n" +
+      '<div class="cart_total"><h3>Gesamt</h3><h3>' +
       total.toFixed(2) +
-      " €</h3></div>\n    ";
+      " €</h3></div>\n";
   }
 
   updateMobileCartButton(total);
 }
 
-// Cart Logik
+/* === Warenkorb-Logik === */
+
 function addToCart(menuIndex) {
   let item = menuItems[menuIndex];
-  let found = -1;
-  for (let i = 0; i < cartItems.length; i++) {
-    if (cartItems[i].id === item.id) {
-      found = i;
+  let existingIndex = -1;
+
+  for (let index = 0; index < cartItems.length; index++) {
+    if (cartItems[index].id === item.id) {
+      existingIndex = index;
       break;
     }
   }
-  if (found === -1) {
+
+  if (existingIndex === -1) {
     cartItems.push({ id: item.id, name: item.name, price: item.price });
-    cartAmount.push(1);
+    cartAmounts.push(1);
   } else {
-    cartAmount[found] = cartAmount[found] + 1;
+    cartAmounts[existingIndex] = cartAmounts[existingIndex] + 1;
   }
-  saveAndRender();
+
+  saveAndReRender();
 }
 
 function increaseAmount(cartIndex) {
-  if (cartAmount[cartIndex] === undefined) {
+  if (cartAmounts[cartIndex] === undefined) {
     return;
   }
-  cartAmount[cartIndex] = cartAmount[cartIndex] + 1;
-  saveAndRender();
+  cartAmounts[cartIndex] = cartAmounts[cartIndex] + 1;
+  saveAndReRender();
 }
 
 function decreaseAmount(cartIndex) {
-  if (cartAmount[cartIndex] === undefined) {
+  if (cartAmounts[cartIndex] === undefined) {
     return;
   }
-  cartAmount[cartIndex] = cartAmount[cartIndex] - 1;
-  if (cartAmount[cartIndex] <= 0) {
+  cartAmounts[cartIndex] = cartAmounts[cartIndex] - 1;
+  if (cartAmounts[cartIndex] <= 0) {
     removeFromCart(cartIndex);
     return;
   }
-  saveAndRender();
+  saveAndReRender();
 }
 
 function removeFromCart(cartIndex) {
   cartItems.splice(cartIndex, 1);
-  cartAmount.splice(cartIndex, 1);
-  saveAndRender();
+  cartAmounts.splice(cartIndex, 1);
+  saveAndReRender();
 }
 
-function saveAndRender() {
-  saveToLocalStorage();
-  renderCart();
+function saveAndReRender() {
+  saveToStorage();
+  renderCartDesktop();
   renderCartDialog();
   renderCartSummary();
 }
 
+/* === Bestellen + Dialog steuern === */
+
 function placeOrder() {
-  let container = document.getElementById("order_actions");
-  if (!container) {
-    container = document.getElementById("order_actions_dialog");
+  let actions = document.getElementById("order_actions");
+  if (!actions) {
+    actions = document.getElementById("order_actions_dialog");
   }
-  if (container) {
-    container.insertAdjacentHTML("afterbegin", getOrderSuccess());
+  if (actions) {
+    actions.insertAdjacentHTML("afterbegin", getOrderSuccess());
   }
-  cartItems = [];
-  cartAmount = [];
-  saveAndRender();
+  // Optional: automatisch schließen
+  // closeCart();
 }
 
-// Mobile UI
 function showCart() {
-  let dlg = document.getElementById("cart_dialog");
+  let cartDialog = document.getElementById("cart_dialog");
   let isMobile = false;
   if (window.matchMedia) {
     isMobile = window.matchMedia("(max-width: 768px)").matches;
   }
+
   if (isMobile) {
-    if (dlg && !dlg.open) {
+    if (cartDialog && !cartDialog.open) {
       renderCartDialog();
-      dlg.showModal();
+      cartDialog.showModal();
     }
   } else {
-    let el = document.querySelector(".cart_container");
-    if (el && el.scrollIntoView) {
-      el.scrollIntoView({ behavior: "smooth" });
+    let cartContainer = document.querySelector(".cart_container");
+    if (cartContainer && cartContainer.scrollIntoView) {
+      cartContainer.scrollIntoView({ behavior: "smooth" });
     }
   }
 }
 
+function closeCart() {
+  let cartDialog = document.getElementById("cart_dialog");
+  if (cartDialog && cartDialog.open) {
+    cartDialog.close();
+  }
+}
+
 function updateMobileCartButton(total) {
-  let btn = document.getElementById("open_cart_btn");
-  if (!btn) {
+  let cartButton = document.getElementById("open_cart_btn");
+  if (!cartButton) {
     return;
   }
+
   if (typeof total !== "number") {
     let subtotal = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      subtotal = subtotal + cartItems[i].price * cartAmount[i];
+    for (let index = 0; index < cartItems.length; index++) {
+      subtotal = subtotal + cartItems[index].price * cartAmounts[index];
     }
     total = subtotal + (cartItems.length > 0 ? 5 : 0);
   }
+
   if (cartItems.length > 0) {
-    btn.textContent = "Warenkorb · " + total.toFixed(2) + " €";
+    cartButton.textContent = "Warenkorb · " + total.toFixed(2) + " €";
   } else {
-    btn.textContent = "Warenkorb";
+    cartButton.textContent = "Warenkorb";
   }
 }

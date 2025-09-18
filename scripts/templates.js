@@ -1,4 +1,4 @@
-// === TEMPLATE FUNKTIONEN ===
+// Beibehaltung deines Stils mit Indizes
 function getMenuItem(menuIndex) {
   return `
     <div class="menu_container">
