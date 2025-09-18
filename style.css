@@ -23,6 +23,12 @@ header img {
   width: 100%;
 }
 
+.restaurant_cover_container {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
 .restaurant_cover {
   height: 300px;
   width: 100%;
@@ -31,11 +37,16 @@ header img {
 }
 
 .restaurant_logo {
-  top: 340px;
-  left: 36.66%;
+  position: absolute;
+  top: 260px;
+  left: 50%;
+  transform: translateX(-50%);
   height: 80px;
-  border: 1px solid black;
+  width: 80px;
+  border: 3px solid white;
   border-radius: 50%;
+  z-index: 10;
+  background-color: white;
 }
 
 .restaurant_card {
@@ -77,6 +88,7 @@ section span {
   height: 160px;
   width: 100%;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .category_cover h3 {
@@ -93,6 +105,12 @@ section span {
   display: flex;
   justify-content: space-between;
   border: 1px solid#F1DECF;
+  border-radius: 8px;
+}
+
+.menu_box:hover {
+  background-color: #fee8d6;
+  transform: scale(1.01);
 }
 
 .menu_box button {
@@ -104,6 +122,11 @@ section span {
   border-left: 1px solid#F1DECF;
   border-top: none;
   border-right: none;
+  border-top-right-radius: 8px;
+}
+
+.menu_box button:hover {
+  cursor: pointer;
 }
 
 .menu_info {

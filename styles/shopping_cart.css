@@ -21,6 +21,7 @@
 .cart_divider {
   background-color: #f1ece6;
   height: 2px;
+  padding: 0px 8px;
 }
 
 .cart_list {
@@ -79,4 +80,8 @@
   padding: 8px;
   color: #7b807d;
   text-align: center;
+}
+
+.cart_costs {
+  padding: 16px;
 }

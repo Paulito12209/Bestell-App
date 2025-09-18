@@ -25,16 +25,19 @@
       <!-- Linke Spalte -->
       <section class="main_content">
         <!-- Cover Bild vom Restaurant -->
-        <img
-          class="restaurant_cover"
-          src="assets/img/china-restaurant-cover.png"
-          alt="Restaurant"
-        />
-        <img
-          class="restaurant_logo"
-          src="assets/icons/android-chrome-512x512.png"
-          alt=""
-        />
+        <div class="restaurant_cover_container">
+          <img
+            class="restaurant_cover"
+            src="assets/img/china-restaurant-cover.png"
+            alt="Restaurant"
+          />
+          <img
+            class="restaurant_logo"
+            src="assets/icons/android-chrome-512x512.png"
+            alt=""
+          />
+        </div>
+
         <!-- Div mit Begrenzung auf 1440px -->
         <div class="widescreen_1440 restaurant_card">
           <!-- Div mit Paddings -->
@@ -47,7 +50,7 @@
           <div>
             <div class="paddings categories">
               <img src="assets/icons/meal-arrow.png" alt="" />
-              <h4>Hauptgerichte (OPTIONAL)</h4>
+              <h4>Hauptgerichte</h4>
             </div>
           </div>
           <hr />
@@ -69,7 +72,7 @@
           <div class="cart_divider"></div>
           <div class="cart_list" id="cart_list"></div>
           <div class="cart_divider"></div>
-          <div id="cart_costs"></div>
+          <div id="cart_costs" class="cart_costs"></div>
         </div>
       </section>
       <dialog onclick="showCart()">
