@@ -4,7 +4,7 @@
   }
   .mobile_cart_btn {
     display: block;
-    margin: 24px auto 40px;
+    margin: 24px auto 40px; /* 40px Mindestabstand zum Footer */
   }
   dialog {
     width: min(92vw, 420px);
