@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/general.css" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="styles/shopping_cart.css" />
-    <link rel="icon" href="assets/icons/android-chrome-512x512.png" type="image/png" />
+    <link rel="stylesheet" href="styles/general.css" />
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link
+      rel="icon"
+      href="assets/icons/android-chrome-512x512.png"
+      type="img2/x-icon"
+    />
     <title>Bestell App</title>
   </head>
   <body onload="init()">
     <header class="paddings">
       <nav class="navigation">
-        <img src="assets/icons/Logo.png" alt="Logo" />
-        <img src="assets/icons/android-chrome-512x512.png" alt="App-Icon" />
+        <img src="assets/icons/Logo.png" alt="" />
+        <img src="assets/icons/android-chrome-512x512.png" alt="" />
       </nav>
     </header>
 
@@ -21,52 +26,63 @@
       <!-- Linke Spalte -->
       <section class="main_content">
         <!-- Cover Bild vom Restaurant -->
-        <img class="restaurant_cover" src="assets/img/china-restaurant-cover.png" alt="Restaurant" />
-        <img class="restaurant_logo" src="assets/icons/android-chrome-512x512.png" alt="Restaurant Logo" />
+        <div class="restaurant_cover_container">
+          <img
+            class="restaurant_cover"
+            src="assets/img/china-restaurant-cover.png"
+            alt="Restaurant"
+          />
+          <img
+            class="restaurant_logo"
+            src="assets/icons/android-chrome-512x512.png"
+            alt=""
+          />
+        </div>
 
+        <!-- Div mit Begrenzung auf 1440px -->
         <div class="widescreen_1440 restaurant_card">
+          <!-- Div mit Paddings -->
           <div class="paddings restaurant_info">
             <h1>China Restaurant</h1>
             <span>Bewertung (4,2 von 5 Sternen)</span>
-            <span>Lieferinfo: ab 20,00 € frei · Lieferzeit ~ 30–45 Min</span>
           </div>
           <hr />
+          <!-- Div mit Kategorien (falls Zeit übrig bleibt) -->
+          <div>
+            <div class="paddings categories">
+              <img src="assets/icons/meal-arrow.png" alt="" />
+              <h4>Hauptgerichte</h4>
+            </div>
+          </div>
+          <hr />
+          <!-- Coverbild mit Kategory -->
+          <div class="category_cover paddings">
+            <img src="assets/img/dish_one.png" alt="" />
+            <h3>Hauptgerichte</h3>
+          </div>
 
-          <!-- = Menü wird hier gerendert = -->
+          <!-- = HIER SOLL GERENDERT WERDEN = -->
           <div id="menu_list" class="menu_paddings"></div>
         </div>
       </section>
-
       <!-- Rechte Spalte -->
       <section class="cart_container">
+        <!-- Warenkorb Dialog wir hier angezeigt -->
         <div class="cart_content">
           <h2>Warenkorb</h2>
           <div class="cart_divider"></div>
           <div class="cart_list" id="cart_list"></div>
           <div class="cart_divider"></div>
-          <div id="cart_costs"></div>
-          <div id="order_actions"></div>
+          <div id="cart_costs" class="cart_costs"></div>
         </div>
       </section>
-
-      <dialog>
-        <div class="cart_content">
-          <h2>Warenkorb</h2>
-          <div class="cart_divider"></div>
-          <div class="cart_list" id="cart_list_dialog"></div>
-          <div class="cart_divider"></div>
-          <div id="cart_costs_dialog"></div>
-          <div id="order_actions_dialog"></div>
-        </div>
+      <dialog onclick="showCart()">
+        <!-- WARENKORB wird nach Klick gerendert-->
       </dialog>
     </main>
-
-    <button id="open_cart_btn" class="mobile_cart_btn" onclick="showCart()">Warenkorb</button>
-
     <footer class="paddings">
-      <img src="assets/icons/android-chrome-512x512.png" alt="App-Icon" />
+      <img src="assets/icons/android-chrome-512x512.png" alt="" />
     </footer>
-
     <script src="scripts/db.js"></script>
     <script src="scripts/templates.js"></script>
     <script src="script.js"></script>
