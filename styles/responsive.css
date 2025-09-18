@@ -4,13 +4,17 @@
   }
   .mobile_cart_btn {
     display: block;
-    margin: 24px auto 40px; /* 40px Mindestabstand zum Footer */
+    margin: 24px auto 40px;
   }
   dialog {
     width: min(92vw, 420px);
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   dialog::backdrop {
     background: rgba(0, 0, 0, 0.4);
@@ -18,5 +22,13 @@
   dialog .cart_content {
     padding: 12px;
     position: static;
+    max-height: 80vh;
+    overflow: auto;
+  }
+  #close_cart_btn {
+    background: #eee;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 6px;
   }
 }
