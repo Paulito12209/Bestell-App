@@ -1,4 +1,4 @@
-// === TEMPLATE FUNKTIONEN
+// === TEMPLATE FUNKTIONEN ===
 function getMenuItem(menuIndex) {
   return `
     <div class="menu_container">
