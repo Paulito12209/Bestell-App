@@ -1,4 +1,4 @@
-// Beibehaltung deines Stils mit Indizes
+// === TEMPLATE FUNKTIONEN
 function getMenuItem(menuIndex) {
   return `
     <div class="menu_container">
@@ -25,7 +25,9 @@ function getCartItem(cartIndex) {
           <button onclick="increaseAmount(${cartIndex})"><img src="assets/icons/add.png" alt="+" /></button>
         </div>
         <div class="cart_buttons">
-          <p>${(cartItems[cartIndex].price * cartAmount[cartIndex]).toFixed(2)} €</p>
+          <p>${(cartItems[cartIndex].price * cartAmount[cartIndex]).toFixed(
+            2
+          )} €</p>
           <button onclick="removeFromCart(${cartIndex})"><img src="assets/icons/trash-can.png" alt="entfernen" /></button>
         </div>
       </div>
