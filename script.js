@@ -54,8 +54,8 @@ function renderCart() {
 }
 
 // === WARENKORB FUNKTIONEN ===
-function addToCart(ItemsIndex) {
-  let menuItem = menuItems[ItemsIndex];
+function addToCart(itemsIndex) {
+  let menuItem = menuItems[itemsIndex];
 
   let cartIndex = -1;
   for (

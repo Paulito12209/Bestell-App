@@ -58,11 +58,7 @@
           </div>
 
           <!-- = HIER SOLL GERENDERT WERDEN = -->
-          <div id="menu_list" class="menu_paddings">
-            <!-- MENU CARD eines einzigen Gerichtes -->
-            
-            <!-- MENU CARD "ENDE"-->
-          </div>
+          <div id="menu_list" class="menu_paddings"></div>
         </div>
       </section>
       <!-- Rechte Spalte -->
@@ -71,38 +67,9 @@
         <div class="cart_content">
           <h2>Warenkorb</h2>
           <div class="cart_divider"></div>
-          <div class="cart_list" id="cart_list">
-            <div>
-              <h3>Pizza Krabben</h3>
-              <div class="cart_options">
-                <div class="cart_buttons">
-                  <button><img src="assets/icons/remove.png" alt="" /></button>
-                  <p>3</p>
-                  <button><img src="assets/icons/add.png" alt="" /></button>
-                </div>
-                <div class="cart_buttons">
-                  <p>28.50 €</p>
-                  <button>
-                    <img src="assets/icons/trash-can.png" alt="" />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <!-- Kosteninformationen -->
-            <div class="cart_divider"></div>
-            <div class="cart_subtotal">
-              <p>Zwischensumme (OPTIONAL)</p>
-              <p>28.50 €</p>
-            </div>
-            <div class="cart_shipping_costs">
-              <p>Lieferkosten</p>
-              <p>5.00 €</p>
-            </div>
-            <div class="cart_total">
-              <h3>Gesamt</h3>
-              <h3>33.50 €</h3>
-            </div>
-          </div>
+          <div class="cart_list" id="cart_list"></div>
+          <div class="cart_divider"></div>
+          <div id="cart_costs"></div>
         </div>
       </section>
       <dialog onclick="showCart()">
