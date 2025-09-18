@@ -2,11 +2,9 @@
 header {
   background-color: #ff8000;
 }
-
 header img {
   height: 40px;
 }
-
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -18,15 +16,8 @@ header img {
   display: flex;
   min-height: 100vh;
 }
-
 .main_content {
   width: 100%;
-}
-
-.restaurant_cover_container {
-  position: relative;
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 .restaurant_cover {
@@ -35,36 +26,27 @@ header img {
   object-fit: cover;
   position: relative;
 }
-
 .restaurant_logo {
-  position: absolute;
-  top: 270px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 60px;
-  width: 60px;
-  border: 3px solid white;
+  top: 340px;
+  left: 36.66%;
+  height: 80px;
+  border: 1px solid black;
   border-radius: 50%;
-  z-index: 10;
-  background-color: white;
 }
 
 .restaurant_card {
   background-color: rgb(253, 252, 251);
 }
-
 .restaurant_info {
   height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: end;
   gap: 16px;
-  margin-top: 24px;
 }
 
 section h1 {
   font-size: 40px;
-  
 }
 section h4 {
   color: #7b807d;
@@ -81,7 +63,6 @@ section span {
   gap: 8px;
   padding: 8px;
 }
-
 .categories img {
   height: 24px;
 }
@@ -90,9 +71,7 @@ section span {
   height: 160px;
   width: 100%;
   object-fit: cover;
-  border-radius: 8px;
 }
-
 .category_cover h3 {
   padding-left: 24px;
 }
@@ -102,42 +81,27 @@ section span {
   flex-direction: column;
   gap: 8px;
 }
-
 .menu_box {
   display: flex;
   justify-content: space-between;
-  border: 1px solid#F1DECF;
-  border-radius: 8px;
+  border: 1px solid #f1decf;
 }
-
-.menu_box:hover {
-  background-color: #fee8d6;
-  transform: scale(1.01);
-}
-
 .menu_box button {
   height: 32px;
   width: 32px;
   color: #ff8000;
   background-color: white;
-  border-bottom: 1px solid#F1DECF;
-  border-left: 1px solid#F1DECF;
+  border-bottom: 1px solid #f1decf;
+  border-left: 1px solid #f1decf;
   border-top: none;
   border-right: none;
-  border-top-right-radius: 8px;
 }
-
-.menu_box button:hover {
-  cursor: pointer;
-}
-
 .menu_info {
   display: flex;
   flex-direction: column;
-  padding: 16px 24px 16px 24px;
+  padding: 16px 24px;
   gap: 8px;
 }
-
 .menu_price {
   color: #f08833;
   font-weight: bold;
@@ -147,7 +111,6 @@ section span {
 footer {
   background-color: black;
 }
-
 footer img {
   height: 40px;
 }

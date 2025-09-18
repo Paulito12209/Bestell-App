@@ -1,7 +1,22 @@
+/* === Responsiv ab 768px === */
 @media (max-width: 768px) {
-  .cart_container { display: none; }
-  .mobile_cart_btn { display: block; }
-  dialog { width: min(92vw, 420px); border: none; border-radius: 8px; padding: 0; }
-  dialog::backdrop { background: rgba(0,0,0,0.4); }
-  dialog .cart_content { padding: 12px; position: static; }
+  .cart_container {
+    display: none;
+  }
+  .mobile_cart_btn {
+    display: block;
+  }
+  dialog {
+    width: min(92vw, 420px);
+    border: none;
+    border-radius: 8px;
+    padding: 0;
+  }
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  dialog .cart_content {
+    padding: 12px;
+    position: static;
+  }
 }
