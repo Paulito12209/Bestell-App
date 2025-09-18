@@ -1,10 +1,10 @@
-/* === Responsiv ab 768px === */
 @media (max-width: 768px) {
   .cart_container {
     display: none;
   }
   .mobile_cart_btn {
     display: block;
+    margin: 24px auto 40px;
   }
   dialog {
     width: min(92vw, 420px);

@@ -1,4 +1,4 @@
-/* = SHOPPING CART = */
+/* === SHOPPING CART === */
 .cart_container {
   min-width: 300px;
   max-width: 400px;
@@ -76,14 +76,9 @@
 }
 .mobile_cart_btn {
   display: none;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 16px;
   padding: 12px 16px;
   border-radius: 999px;
   background: #ff8b02;
   color: #fff;
   border: none;
-  z-index: 10;
 }
