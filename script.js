@@ -1,5 +1,4 @@
-// Einfache Variante in deinem Stil: nur let, einfache if/for, kein ?. etc.
-
+// Variablen
 let cartItems = [];
 let cartAmount = [];
 
