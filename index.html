@@ -36,7 +36,7 @@
           </div>
           <hr />
 
-          <!-- Kategorie-Header: Hauptgerichte -->
+          <!-- Kategorie-Header: Hauptgerichte (bleibt erhalten) -->
           <div>
             <div class="paddings categories">
               <img src="assets/icons/meal-arrow.png" alt="" />
@@ -46,7 +46,7 @@
 
           <hr />
 
-          <!-- Kategorie-Cover: Hauptgerichte -->
+          <!-- Kategorie-Cover: Hauptgerichte (bleibt erhalten) -->
           <div class="category_cover paddings">
             <img src="assets/img/dish_one.png" alt="Hauptgerichte" />
             <h3>Hauptgerichte</h3>
@@ -55,7 +55,7 @@
           <!-- Menüliste (wird per JS gerendert) -->
           <div id="menu_list" class="menu_paddings"></div>
 
-          <!-- Mobiler Button: direkt unter dem letzten Gericht -->
+          <!-- Mobiler Button: direkt unter der letzten Karte, nicht im Footer -->
           <button id="open_cart_btn" class="mobile_cart_btn" onclick="showCart()">Warenkorb</button>
         </div>
       </section>
@@ -81,6 +81,9 @@
           <div class="cart_divider"></div>
           <div id="cart_costs_dialog"></div>
           <div id="order_actions_dialog"></div>
+          <div class="cart_buttons paddings">
+            <button id="close_cart_btn" onclick="closeCart()">Schließen</button>
+          </div>
         </div>
       </dialog>
     </main>
