@@ -116,10 +116,15 @@ function addToCart(menuIndex) {
   renderCartSummary();
 }
 
-// Plus im Warenkorb
+// Menge erhöhen
 function increaseAmount(cartIndex) {
-  cartAmount[cartIndex]++;
-  saveAndRender();
+  // Bounds-Check (sicher ist sicher)
+  if (cartIndex >= 0 && cartIndex < cartAmount.length) {
+    cartAmount[cartIndex] = cartAmount[cartIndex] + 1;
+    saveToLocalStorage();
+    renderCart();
+    renderCartSummary();
+  }
 }
 
 // Minus im Warenkorb (bei 1 → entfernen, nie < 0)
