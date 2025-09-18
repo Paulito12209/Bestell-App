@@ -138,11 +138,15 @@ function decreaseAmount(cartIndex) {
   saveAndRender();
 }
 
-// Mülleimer
+// Item komplett entfernen
 function removeFromCart(cartIndex) {
-  cartItems.splice(cartIndex, 1);
-  cartAmount.splice(cartIndex, 1);
-  saveAndRender();
+  if (cartIndex >= 0 && cartIndex < cartItems.length) {
+    cartItems.splice(cartIndex, 1);
+    cartAmount.splice(cartIndex, 1);
+    saveToLocalStorage();
+    renderCart();
+    renderCartSummary();
+  }
 }
 
 function saveAndRender() {
