@@ -21,11 +21,11 @@ function getCartItem(cartIndex) {
       <div class="cart_options">
         <div class="cart_buttons">
           <button onclick="decreaseAmount(${cartIndex})"><img src="assets/icons/remove.png" alt="-" /></button>
-          <p>${cartAmount[cartIndex]}</p>
+          <p>${cartAmounts[cartIndex]}</p>
           <button onclick="increaseAmount(${cartIndex})"><img src="assets/icons/add.png" alt="+" /></button>
         </div>
         <div class="cart_buttons">
-          <p>${(cartItems[cartIndex].price * cartAmount[cartIndex]).toFixed(
+          <p>${(cartItems[cartIndex].price * cartAmounts[cartIndex]).toFixed(
             2
           )} €</p>
           <button onclick="removeFromCart(${cartIndex})"><img src="assets/icons/trash-can.png" alt="entfernen" /></button>
