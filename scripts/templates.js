@@ -1,4 +1,4 @@
-// Beibehaltung deines Stils mit Indizes
+// === MENU TEMPLATES ===
 function getMenuItem(menuIndex) {
   return `
     <div class="menu_container">
@@ -14,6 +14,7 @@ function getMenuItem(menuIndex) {
   `;
 }
 
+// === CART TEMPLATES ===
 function getCartItem(cartIndex) {
   return `
     <div>
@@ -35,6 +36,40 @@ function getCartItem(cartIndex) {
   `;
 }
 
+function getEmptyCart() {
+  return '<div class="empty_cart">Dein Warenkorb ist leer.</div>';
+}
+
+function getCartSummary(subtotal, shipping, total) {
+  return `
+    <div class="cart_subtotal">
+      <p>Zwischensumme</p>
+      <p>${subtotal.toFixed(2)} €</p>
+    </div>
+    <div class="cart_shipping_costs">
+      <p>Lieferkosten</p>
+      <p>${shipping.toFixed(2)} €</p>
+    </div>
+    <div class="cart_total">
+      <h3>Gesamt</h3>
+      <h3>${total.toFixed(2)} €</h3>
+    </div>
+  `;
+}
+
+function getOrderActions() {
+  return `
+    <div class="cart_divider"></div>
+    <div class="cart_buttons paddings">
+      <button onclick="placeOrder()">Bestellen</button>
+    </div>
+  `;
+}
+
 function getOrderSuccess() {
-  return `\n    <div id=\"order_success\" class=\"order_success\" role=\"status\">Deine Testbestellung wurde aufgenommen. Vielen Dank!</div>\n  `;
+  return `
+    <div id="order_success" class="order_success" role="status">
+      Deine Testbestellung wurde aufgenommen. Vielen Dank!
+    </div>
+  `;
 }
