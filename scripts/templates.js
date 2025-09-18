@@ -69,7 +69,7 @@ function getOrderActions() {
 function getOrderSuccess() {
   return `
     <div id="order_success" class="order_success" role="status">
-      Deine Testbestellung wurde aufgenommen. Vielen Dank!
+      ✅ Deine Bestellung wurde aufgenommen. Vielen Dank!
     </div>
   `;
 }

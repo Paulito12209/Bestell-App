@@ -56,11 +56,8 @@ function renderCartDesktop() {
   let cartList = document.getElementById("cart_list");
   if (!cartList) return;
 
-  cartList.innerHTML = "";
-
   if (cartItems.length == 0) {
-    cartList.innerHTML =
-      '<div class="empty_cart">Dein Warenkorb ist leer.</div>';
+    cartList.innerHTML = getEmptyCart();
 
     let actions = document.getElementById("order_actions");
     if (actions) {
@@ -69,18 +66,14 @@ function renderCartDesktop() {
     return;
   }
 
+  cartList.innerHTML = "";
   for (let i = 0; i < cartItems.length; i++) {
     cartList.innerHTML += getCartItem(i);
   }
 
   let actions = document.getElementById("order_actions");
   if (actions) {
-    actions.innerHTML = `
-      <div class="cart_divider"></div>
-      <div class="cart_buttons paddings">
-        <button onclick="placeOrder()">Bestellen</button>
-      </div>
-    `;
+    actions.innerHTML = getOrderActions();
   }
 }
 
@@ -89,11 +82,8 @@ function renderCartDialog() {
   let cartListDialog = document.getElementById("cart_list_dialog");
   if (!cartListDialog) return;
 
-  cartListDialog.innerHTML = "";
-
   if (cartItems.length == 0) {
-    cartListDialog.innerHTML =
-      '<div class="empty_cart">Dein Warenkorb ist leer.</div>';
+    cartListDialog.innerHTML = getEmptyCart();
 
     let actionsDialog = document.getElementById("order_actions_dialog");
     if (actionsDialog) {
@@ -102,18 +92,14 @@ function renderCartDialog() {
     return;
   }
 
+  cartListDialog.innerHTML = "";
   for (let i = 0; i < cartItems.length; i++) {
     cartListDialog.innerHTML += getCartItem(i);
   }
 
   let actionsDialog = document.getElementById("order_actions_dialog");
   if (actionsDialog) {
-    actionsDialog.innerHTML = `
-      <div class="cart_divider"></div>
-      <div class="cart_buttons paddings">
-        <button onclick="placeOrder()">Bestellen</button>
-      </div>
-    `;
+    actionsDialog.innerHTML = getOrderActions();
   }
 }
 
@@ -134,32 +120,16 @@ function renderCartSummary() {
 
   let total = subtotal + shipping;
 
-  // HTML für Zusammenfassung
-  let summaryHTML = `
-    <div class="cart_subtotal">
-      <p>Zwischensumme</p>
-      <p>${subtotal.toFixed(2)} €</p>
-    </div>
-    <div class="cart_shipping_costs">
-      <p>Lieferkosten</p>
-      <p>${shipping.toFixed(2)} €</p>
-    </div>
-    <div class="cart_total">
-      <h3>Gesamt</h3>
-      <h3>${total.toFixed(2)} €</h3>
-    </div>
-  `;
-
   // Desktop Warenkorb aktualisieren
   let cartCosts = document.getElementById("cart_costs");
   if (cartCosts) {
-    cartCosts.innerHTML = summaryHTML;
+    cartCosts.innerHTML = getCartSummary(subtotal, shipping, total);
   }
 
   // Dialog Warenkorb aktualisieren
   let cartCostsDialog = document.getElementById("cart_costs_dialog");
   if (cartCostsDialog) {
-    cartCostsDialog.innerHTML = summaryHTML;
+    cartCostsDialog.innerHTML = getCartSummary(subtotal, shipping, total);
   }
 
   // Mobilen Button aktualisieren
@@ -236,13 +206,21 @@ function saveAndUpdate() {
 
 // === BESTELLUNG AUFGEBEN ===
 function placeOrder() {
+  // Warenkorb leeren
+  cartItems = [];
+  cartAmounts = [];
+
+  // Erfolgsmeldung anzeigen
   let actions = document.getElementById("order_actions");
   if (!actions) {
     actions = document.getElementById("order_actions_dialog");
   }
   if (actions) {
-    actions.insertAdjacentHTML("afterbegin", getOrderSuccess());
+    actions.innerHTML = getOrderSuccess();
   }
+
+  // Alles aktualisieren
+  saveAndUpdate();
 }
 
 // === WARENKORB ANZEIGEN (MOBIL) ===
