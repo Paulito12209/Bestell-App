@@ -2,15 +2,15 @@
 let cartItems = [];
 let cartAmount = [];
 
-// === INIT FUNKTION ===
+// === INITIAL FUNKTION ===
 function init() {
   getFromLocalStorage();
   renderMenuItems();
   renderCart();
-  updateCartCostSummary();
+  renderCartSummary();
 }
 
-// === LOCAL STORAGE FUNKTIONEN ===
+// === LOCAL STORAGE ===
 function saveToLocalStorage() {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
   localStorage.setItem("cartAmount", JSON.stringify(cartAmount));
@@ -18,77 +18,111 @@ function saveToLocalStorage() {
 
 function getFromLocalStorage() {
   let items = JSON.parse(localStorage.getItem("cartItems"));
-  let Amount = JSON.parse(localStorage.getItem("cartItems"));
-  if (items && Amount) {
-    cartItems = items;
-    cartAmount = Amount;
+  let amounts = JSON.parse(localStorage.getItem("cartAmount"));
+
+  // Standard: leere Arrays
+  cartItems = [];
+  cartAmount = [];
+
+  // Nur wenn wirklich Daten da sind
+  if (items != null && amounts != null) {
+    // Längen müssen gleich sein
+    if (items.length == amounts.length) {
+      cartItems = items;
+      cartAmount = amounts;
+    }
   }
 }
 
-// - RENDER FUNKTION: GERICHTE
+// === MENU RENDER ===
 function renderMenuItems() {
-  let menuListRef = document.getElementById("menu_list");
-  menuListRef.innerHTML = "";
-
-  for (
-    let menuItemsIndex = 0;
-    menuItemsIndex < menuItems.length;
-    menuItemsIndex++
-  ) {
-    menuListRef.innerHTML += getMenuItem(menuItemsIndex);
+  let list = document.getElementById("menu_list");
+  list.innerHTML = "";
+  for (let i = 0; i < menuItems.length; i++) {
+    list.innerHTML += getMenuItem(i);
   }
 }
 
-// - RENDER FUNKTION: WARENKORB
+// === WARENKORB RENDER ===
 function renderCart() {
-  let cartListRef = document.getElementById("cart_list");
-  cartListRef.innerHTML = "";
+  let list = document.getElementById("cart_list");
+  list.innerHTML = "";
 
-  for (
-    let menuItemsIndex = 0;
-    menuItemsIndex < cartItems.length;
-    menuItemsIndex++
-  ) {
-    cartListRef.innerHTML += getCartItem(menuItemsIndex);
+  if (cartItems.length === 0) {
+    list.innerHTML = `<div class="empty_cart">Dein Warenkorb ist leer.</div>`;
+    return;
+  }
+  for (let i = 0; i < cartItems.length; i++) {
+    list.innerHTML += getCartItem(i);
   }
 }
 
-// === WARENKORB FUNKTIONEN ===
-function addToCart(itemsIndex) {
-  let menuItem = menuItems[itemsIndex];
+// === SUMMARY RENDER ===
+function renderCartSummary() {
+  let sub = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+    sub = sub + cartItems[i].price * cartAmount[i];
+  }
 
-  let cartIndex = -1;
-  for (
-    let menuItemsIndex = 0;
-    menuItemsIndex < cartItems.length;
-    menuItemsIndex++
-  ) {
-    if (cartItems[menuItemsIndex].id == menuItem.id) {
-      cartIndex = menuItemsIndex;
+  let shipping = 0.0;
+  if (cartItems.length > 0) {
+    shipping = 5.0;
+  }
+
+  let total = sub + shipping;
+
+  let costs = document.getElementById("cart_costs");
+  costs.innerHTML = `
+    <div class="cart_subtotal">
+      <p>Zwischensumme</p>
+      <p>${sub.toFixed(2)} €</p>
+    </div>
+    <div class="cart_shipping_costs">
+      <p>Lieferkosten</p>
+      <p>${shipping.toFixed(2)} €</p>
+    </div>
+    <div class="cart_total">
+      <h3>Gesamt</h3>
+      <h3>${total.toFixed(2)} €</h3>
+    </div>
+  `;
+}
+
+// === WARENKORB LOGIK ===
+// Klick auf oranges + in der Menükarte
+function addToCart(menuIndex) {
+  let item = menuItems[menuIndex];
+
+  // Manuelle Suche nach gleicher ID
+  let found = -1;
+  for (let i = 0; i < cartItems.length; i++) {
+    if (cartItems[i].id == item.id) {
+      found = i;
       break;
     }
   }
 
-  if (cartIndex >= 0) {
-    cartAmount[cartIndex]++;
-  } else {
-    cartItems.push(menuItem);
+  if (found == -1) {
+    // Neues Item in den Warenkorb
+    cartItems.push(item);
     cartAmount.push(1);
+  } else {
+    // Anzahl erhöhen
+    cartAmount[found] = cartAmount[found] + 1;
   }
+
   saveToLocalStorage();
   renderCart();
-  updateCartCostSummary();
+  renderCartSummary();
 }
 
-// === RECHNER FUNKTIONEN ===
+// Plus im Warenkorb
 function increaseAmount(cartIndex) {
   cartAmount[cartIndex]++;
-
-  saveToLocalStorage();
-  renderCart();
-  updateCartCostSummary();
+  saveAndRender();
 }
 
+// Minus im Warenkorb (bei 1 → entfernen, nie < 0)
 function decreaseAmount(cartIndex) {
   if (cartAmount[cartIndex] > 1) {
     cartAmount[cartIndex]--;
@@ -96,30 +130,20 @@ function decreaseAmount(cartIndex) {
     cartItems.splice(cartIndex, 1);
     cartAmount.splice(cartIndex, 1);
   }
+  saveAndRender();
+}
 
+// Mülleimer
+function removeFromCart(cartIndex) {
+  cartItems.splice(cartIndex, 1);
+  cartAmount.splice(cartIndex, 1);
+  saveAndRender();
+}
+
+function saveAndRender() {
   saveToLocalStorage();
   renderCart();
-  updateCartCostSummary();
+  renderCartSummary();
 }
 
-// === WARENKORB ANZEIGE ===
-function updateCartCostSummary() {
-  let sumSubTotal = 0;
-
-  for (
-    let menuItemsIndex = 0;
-    menuItemsIndex < cartItems.length;
-    menuItemsIndex++
-  ) {
-    sumSubTotal += cartItems[menuItemsIndex].price * cartAmount[menuItemsIndex];
-  }
-
-  let deliveryCost = 5.0;
-  let sumTotal = sumSubTotal + deliveryCost;
-  let subTotal = document.getElementById("sumSubTotal");
-  let total = document.getElementById("total")
-
-  if(subTotal) subTotal.innerHTML = sumSubTotal.toFixed(2) +"€";
-  if(total) total.innerHTML = sumTotal.toFixed(2) +"€";
-}
-// - DIALOG ÖFFNEN
+//DIALO ÖFFNEN
