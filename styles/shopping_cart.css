@@ -54,6 +54,11 @@
   border: none;
 }
 
+.cart_buttons button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
 .cart_buttons button img {
   height: 16px;
 }
