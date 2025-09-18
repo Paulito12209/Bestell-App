@@ -59,9 +59,9 @@ function renderCartDesktop() {
   if (cartItems.length == 0) {
     cartList.innerHTML = getEmptyCart();
 
-    let actions = document.getElementById("order_actions");
-    if (actions) {
-      actions.innerHTML = "";
+    let buttonArea = document.getElementById("order_actions");
+    if (buttonArea) {
+      buttonArea.innerHTML = "";
     }
     return;
   }
@@ -71,9 +71,9 @@ function renderCartDesktop() {
     cartList.innerHTML += getCartItem(i);
   }
 
-  let actions = document.getElementById("order_actions");
-  if (actions) {
-    actions.innerHTML = getOrderActions();
+  let buttonArea = document.getElementById("order_actions");
+  if (buttonArea) {
+    buttonArea.innerHTML = getOrderActions();
   }
 }
 
@@ -85,9 +85,9 @@ function renderCartDialog() {
   if (cartItems.length == 0) {
     cartListDialog.innerHTML = getEmptyCart();
 
-    let actionsDialog = document.getElementById("order_actions_dialog");
-    if (actionsDialog) {
-      actionsDialog.innerHTML = "";
+    let buttonAreaDialog = document.getElementById("order_actions_dialog");
+    if (buttonAreaDialog) {
+      buttonAreaDialog.innerHTML = "";
     }
     return;
   }
@@ -97,9 +97,9 @@ function renderCartDialog() {
     cartListDialog.innerHTML += getCartItem(i);
   }
 
-  let actionsDialog = document.getElementById("order_actions_dialog");
-  if (actionsDialog) {
-    actionsDialog.innerHTML = getOrderActions();
+  let buttonAreaDialog = document.getElementById("order_actions_dialog");
+  if (buttonAreaDialog) {
+    buttonAreaDialog.innerHTML = getOrderActions();
   }
 }
 
@@ -139,17 +139,17 @@ function renderCartSummary() {
 // === ARTIKEL ZUM WARENKORB HINZUFÜGEN ===
 function addToCart(menuIndex) {
   let item = menuItems[menuIndex];
-  let found = -1;
+  let existingItemIndex = -1;
 
   // Suchen ob Artikel schon im Warenkorb ist
   for (let i = 0; i < cartItems.length; i++) {
     if (cartItems[i].id == item.id) {
-      found = i;
+      existingItemIndex = i;
       break;
     }
   }
 
-  if (found == -1) {
+  if (existingItemIndex == -1) {
     // Neuer Artikel: hinzufügen
     cartItems.push({
       id: item.id,
@@ -158,8 +158,8 @@ function addToCart(menuIndex) {
     });
     cartAmounts.push(1);
   } else {
-    // Artikel existiert: Menge erhöhen
-    cartAmounts[found] = cartAmounts[found] + 1;
+    // Artikel existiert bereits: Menge erhöhen
+    cartAmounts[existingItemIndex] = cartAmounts[existingItemIndex] + 1;
   }
 
   saveAndUpdate();
@@ -206,20 +206,23 @@ function saveAndUpdate() {
 
 // === BESTELLUNG AUFGEBEN ===
 function placeOrder() {
-  // Warenkorb leeren
+  // Warenkorb sofort leeren
   cartItems = [];
   cartAmounts = [];
 
-  // Erfolgsmeldung anzeigen
-  let actions = document.getElementById("order_actions");
-  if (!actions) {
-    actions = document.getElementById("order_actions_dialog");
-  }
-  if (actions) {
-    actions.innerHTML = getOrderSuccess();
+  // Dankesnachricht für Desktop anzeigen
+  let buttonAreaDesktop = document.getElementById("order_actions");
+  if (buttonAreaDesktop) {
+    buttonAreaDesktop.innerHTML = getOrderSuccess();
   }
 
-  // Alles aktualisieren
+  // Dankesnachricht für Mobile anzeigen
+  let buttonAreaMobile = document.getElementById("order_actions_dialog");
+  if (buttonAreaMobile) {
+    buttonAreaMobile.innerHTML = getOrderSuccess();
+  }
+
+  // Alles aktualisieren (zeigt leeren Warenkorb an)
   saveAndUpdate();
 }
 
