@@ -1,4 +1,4 @@
-// === TEMPLATE FUNKTIONEN ===
+// Beibehaltung deines Stils mit Indizes
 function getMenuItem(menuIndex) {
   return `
     <div class="menu_container">
@@ -8,8 +8,7 @@ function getMenuItem(menuIndex) {
           <p>${menuItems[menuIndex].description}</p>
           <p class="menu_price">${menuItems[menuIndex].price.toFixed(2)} €</p>
         </div>
-        <!-- Orange + Button oben rechts der Karte -->
-        <button onclick="addToCart(${menuIndex})">+</button>
+        <button aria-label="hinzufügen" onclick="addToCart(${menuIndex})">+</button>
       </div>
     </div>
   `;
@@ -32,4 +31,8 @@ function getCartItem(cartIndex) {
       </div>
     </div>
   `;
+}
+
+function getOrderSuccess() {
+  return `\n    <div id=\"order_success\" class=\"order_success\" role=\"status\">Deine Testbestellung wurde aufgenommen. Vielen Dank!</div>\n  `;
 }
