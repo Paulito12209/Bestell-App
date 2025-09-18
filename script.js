@@ -127,15 +127,20 @@ function increaseAmount(cartIndex) {
   }
 }
 
-// Minus im Warenkorb (bei 1 → entfernen, nie < 0)
+// Menge verringern (bei 1 -> entfernen)
 function decreaseAmount(cartIndex) {
-  if (cartAmount[cartIndex] > 1) {
-    cartAmount[cartIndex]--;
-  } else {
-    cartItems.splice(cartIndex, 1);
-    cartAmount.splice(cartIndex, 1);
+  if (cartIndex >= 0 && cartIndex < cartAmount.length) {
+    if (cartAmount[cartIndex] > 1) {
+      cartAmount[cartIndex] = cartAmount[cartIndex] - 1;
+    } else {
+      // bei 1 wird der Eintrag komplett entfernt
+      cartItems.splice(cartIndex, 1);
+      cartAmount.splice(cartIndex, 1);
+    }
+    saveToLocalStorage();
+    renderCart();
+    renderCartSummary();
   }
-  saveAndRender();
 }
 
 // Item komplett entfernen
@@ -149,10 +154,10 @@ function removeFromCart(cartIndex) {
   }
 }
 
-function saveAndRender() {
-  saveToLocalStorage();
-  renderCart();
-  renderCartSummary();
-}
+// function saveAndRender() {
+//   saveToLocalStorage();
+//   renderCart();
+//   renderCartSummary();
+// }
 
 //DIALO ÖFFNEN
