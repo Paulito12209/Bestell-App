@@ -59,9 +59,9 @@ function renderCart() {
 
 // === SUMMARY RENDER ===
 function renderCartSummary() {
-  let sub = 0;
+  let subtotal = 0;
   for (let i = 0; i < cartItems.length; i++) {
-    sub = sub + cartItems[i].price * cartAmount[i];
+    subtotal = subtotal + cartItems[i].price * cartAmount[i];
   }
 
   let shipping = 0.0;
@@ -69,13 +69,13 @@ function renderCartSummary() {
     shipping = 5.0;
   }
 
-  let total = sub + shipping;
+  let total = subtotal + shipping;
 
   let costs = document.getElementById("cart_costs");
   costs.innerHTML = `
     <div class="cart_subtotal">
       <p>Zwischensumme</p>
-      <p>${sub.toFixed(2)} €</p>
+      <p>${subtotal.toFixed(2)} €</p>
     </div>
     <div class="cart_shipping_costs">
       <p>Lieferkosten</p>
