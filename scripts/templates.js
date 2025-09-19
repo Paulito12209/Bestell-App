@@ -8,7 +8,7 @@ function getMenuItem(menuIndex) {
           <p>${menuItems[menuIndex].description}</p>
           <p class="menu_price">${menuItems[menuIndex].price.toFixed(2)} €</p>
         </div>
-        <button aria-label="hinzufügen" onclick="addToCart(${menuIndex})">+</button>
+        <button type="button" aria-label="hinzufügen" onclick="addToCart(${menuIndex})">+</button>
       </div>
     </div>
   `;
