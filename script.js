@@ -168,8 +168,11 @@ function removeFromCart(cartIndex) {
 // === BESTELLEN ===
 function placeOrder() {
   if (cartItems.length == 0) return;
+  // Erfolg anzeigen UND Warenkorb leeren (Desktop + Dialog)
   orderPlaced = true;
-  renderCartSummary();
+  cartItems = [];
+  cartAmounts = [];
+  saveAndRenderAll();
 }
 
 // === MOBILER DIALOG ===
@@ -209,7 +212,7 @@ function updateMobileCartButton(total) {
   if (count > 0) {
     btn.textContent = "Warenkorb (" + count + ") • " + total.toFixed(2) + " €";
   } else {
-    btn.textContent = "Waranekorb";
+    btn.textContent = "Warenkorb";
   }
 }
 
