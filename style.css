@@ -43,7 +43,7 @@ header img {
   background-color: rgb(253, 252, 251);
 }
 .restaurant_info {
-  height: 80px;
+  height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: end;
