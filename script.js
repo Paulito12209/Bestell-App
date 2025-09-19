@@ -1,6 +1,7 @@
 // === VARIABLEN ===
 let cartItems = []; // Artikel im Warenkorb
 let cartAmounts = []; // Mengen passend zu cartItems
+let orderPlaced = false; // Flag für Bestellbestätigung
 
 // === INIT FUNKTION ===
 function init() {
@@ -12,7 +13,7 @@ function init() {
   updateMobileCartButton();
 }
 
-// === LOCAL STORAGE FUNKTIONEN ===
+// === LOCAL STORAGE ===
 function saveToStorage() {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
   localStorage.setItem("cartAmounts", JSON.stringify(cartAmounts));
@@ -22,16 +23,12 @@ function loadFromStorage() {
   let savedItems = localStorage.getItem("cartItems");
   let savedAmounts = localStorage.getItem("cartAmounts");
 
-  // Standard: leere Arrays
   cartItems = [];
   cartAmounts = [];
 
-  // Nur wenn Daten vorhanden sind
   if (savedItems && savedAmounts) {
     let items = JSON.parse(savedItems);
     let amounts = JSON.parse(savedAmounts);
-
-    // Sicherheitscheck: beide Arrays müssen gleich lang sein
     if (items.length == amounts.length) {
       cartItems = items;
       cartAmounts = amounts;
@@ -45,24 +42,20 @@ function renderMenu() {
   if (!menuList) return;
 
   menuList.innerHTML = "";
-
   for (let i = 0; i < menuItems.length; i++) {
     menuList.innerHTML += getMenuItem(i);
   }
 }
 
-// === WARENKORB DESKTOP RENDERN ===
+// === DESKTOP-WARENKORB RENDERN ===
 function renderCartDesktop() {
   let cartList = document.getElementById("cart_list");
   if (!cartList) return;
 
   if (cartItems.length == 0) {
     cartList.innerHTML = getEmptyCart();
-
     let buttonArea = document.getElementById("order_actions");
-    if (buttonArea) {
-      buttonArea.innerHTML = "";
-    }
+    if (buttonArea) buttonArea.innerHTML = "";
     return;
   }
 
@@ -72,23 +65,18 @@ function renderCartDesktop() {
   }
 
   let buttonArea = document.getElementById("order_actions");
-  if (buttonArea) {
-    buttonArea.innerHTML = getOrderActions();
-  }
+  if (buttonArea) buttonArea.innerHTML = getOrderActions();
 }
 
-// === WARENKORB DIALOG (MOBIL) RENDERN ===
+// === MOBILER DIALOG-WARENKORB RENDERN ===
 function renderCartDialog() {
   let cartListDialog = document.getElementById("cart_list_dialog");
   if (!cartListDialog) return;
 
   if (cartItems.length == 0) {
     cartListDialog.innerHTML = getEmptyCart();
-
     let buttonAreaDialog = document.getElementById("order_actions_dialog");
-    if (buttonAreaDialog) {
-      buttonAreaDialog.innerHTML = "";
-    }
+    if (buttonAreaDialog) buttonAreaDialog.innerHTML = "";
     return;
   }
 
@@ -98,177 +86,137 @@ function renderCartDialog() {
   }
 
   let buttonAreaDialog = document.getElementById("order_actions_dialog");
-  if (buttonAreaDialog) {
-    buttonAreaDialog.innerHTML = getOrderActions();
-  }
+  if (buttonAreaDialog) buttonAreaDialog.innerHTML = getOrderActions();
 }
 
-// === WARENKORB ZUSAMMENFASSUNG RENDERN ===
+// === ZUSAMMENFASSUNG RENDERN ===
 function renderCartSummary() {
   let subtotal = 0;
-
-  // Zwischensumme berechnen
   for (let i = 0; i < cartItems.length; i++) {
     subtotal = subtotal + cartItems[i].price * cartAmounts[i];
   }
 
-  // Lieferkosten: 5€ wenn Warenkorb nicht leer, sonst 0€
-  let shipping = 0;
-  if (cartItems.length > 0) {
-    shipping = 5;
-  }
-
+  let shipping = cartItems.length > 0 ? 5 : 0;
   let total = subtotal + shipping;
 
-  // Desktop Warenkorb aktualisieren
   let cartCosts = document.getElementById("cart_costs");
   if (cartCosts) {
-    cartCosts.innerHTML = getCartSummary(subtotal, shipping, total);
+    cartCosts.innerHTML =
+      getCartSummary(subtotal, shipping, total) +
+      (orderPlaced ? getOrderSuccess() : "");
   }
 
-  // Dialog Warenkorb aktualisieren
   let cartCostsDialog = document.getElementById("cart_costs_dialog");
   if (cartCostsDialog) {
-    cartCostsDialog.innerHTML = getCartSummary(subtotal, shipping, total);
+    cartCostsDialog.innerHTML =
+      getCartSummary(subtotal, shipping, total) +
+      (orderPlaced ? getOrderSuccess() : "");
   }
 
-  // Mobilen Button aktualisieren
   updateMobileCartButton(total);
 }
 
-// === ARTIKEL ZUM WARENKORB HINZUFÜGEN ===
-function addToCart(menuIndex) {
-  let item = menuItems[menuIndex];
-  let existingItemIndex = -1;
-
-  // Suchen ob Artikel schon im Warenkorb ist
+// === HILFE: INDEX NACH ID FINDEN ===
+function findCartIndexById(id) {
   for (let i = 0; i < cartItems.length; i++) {
-    if (cartItems[i].id == item.id) {
-      existingItemIndex = i;
-      break;
-    }
+    if (cartItems[i].id == id) return i;
   }
+  return -1;
+}
+
+// === ARTIKEL HINZUFÜGEN ===
+function addToCart(menuIndex) {
+  orderPlaced = false;
+  let item = menuItems[menuIndex];
+  let existingItemIndex = findCartIndexById(item.id);
 
   if (existingItemIndex == -1) {
-    // Neuer Artikel: hinzufügen
-    cartItems.push({
-      id: item.id,
-      name: item.name,
-      price: item.price
-    });
+    cartItems.push({ id: item.id, name: item.name, price: item.price });
     cartAmounts.push(1);
   } else {
-    // Artikel existiert bereits: Menge erhöhen
     cartAmounts[existingItemIndex] = cartAmounts[existingItemIndex] + 1;
   }
 
-  saveAndUpdate();
+  saveAndRenderAll();
 }
 
-// === MENGE ERHÖHEN ===
+// === MENGE ERHÖHEN/VERRINGERN/ENTFERNEN ===
 function increaseAmount(cartIndex) {
-  if (cartIndex >= 0 && cartIndex < cartAmounts.length) {
-    cartAmounts[cartIndex] = cartAmounts[cartIndex] + 1;
-    saveAndUpdate();
-  }
+  if (cartIndex < 0 || cartIndex >= cartAmounts.length) return;
+  cartAmounts[cartIndex] = cartAmounts[cartIndex] + 1;
+  saveAndRenderAll();
 }
 
-// === MENGE VERRINGERN ===
 function decreaseAmount(cartIndex) {
-  if (cartIndex >= 0 && cartIndex < cartAmounts.length) {
-    if (cartAmounts[cartIndex] > 1) {
-      cartAmounts[cartIndex] = cartAmounts[cartIndex] - 1;
-    } else {
-      // Bei Menge 1: komplett entfernen
-      removeFromCart(cartIndex);
-      return;
-    }
-    saveAndUpdate();
+  if (cartIndex < 0 || cartIndex >= cartAmounts.length) return;
+
+  if (cartAmounts[cartIndex] > 1) {
+    cartAmounts[cartIndex] = cartAmounts[cartIndex] - 1;
+    saveAndRenderAll();
+  } else {
+    removeFromCart(cartIndex);
   }
 }
 
-// === ARTIKEL KOMPLETT ENTFERNEN ===
 function removeFromCart(cartIndex) {
-  if (cartIndex >= 0 && cartIndex < cartItems.length) {
-    cartItems.splice(cartIndex, 1);
-    cartAmounts.splice(cartIndex, 1);
-    saveAndUpdate();
-  }
+  if (cartIndex < 0 || cartIndex >= cartItems.length) return;
+  cartItems.splice(cartIndex, 1);
+  cartAmounts.splice(cartIndex, 1);
+  saveAndRenderAll();
 }
 
-// === SPEICHERN UND ALLES AKTUALISIEREN ===
-function saveAndUpdate() {
-  saveToStorage();
-  renderCartDesktop();
-  renderCartDialog();
+// === BESTELLEN ===
+function placeOrder() {
+  if (cartItems.length == 0) return;
+  orderPlaced = true;
   renderCartSummary();
 }
 
-// === BESTELLUNG AUFGEBEN ===
-function placeOrder() {
-  // Warenkorb sofort leeren
-  cartItems = [];
-  cartAmounts = [];
-
-  // Dankesnachricht für Desktop anzeigen
-  let buttonAreaDesktop = document.getElementById("order_actions");
-  if (buttonAreaDesktop) {
-    buttonAreaDesktop.innerHTML = getOrderSuccess();
-  }
-
-  // Dankesnachricht für Mobile anzeigen
-  let buttonAreaMobile = document.getElementById("order_actions_dialog");
-  if (buttonAreaMobile) {
-    buttonAreaMobile.innerHTML = getOrderSuccess();
-  }
-
-  // Alles aktualisieren (zeigt leeren Warenkorb an)
-  saveAndUpdate();
-}
-
-// === WARENKORB ANZEIGEN (MOBIL) ===
+// === MOBILER DIALOG ===
 function showCart() {
-  let cartDialog = document.getElementById("cart_dialog");
-  let isMobile = window.matchMedia("(max-width: 768px)").matches;
-
-  if (isMobile) {
-    if (cartDialog && !cartDialog.open) {
-      renderCartDialog();
-      cartDialog.showModal();
-    }
-  } else {
-    // Desktop: zum Warenkorb scrollen
-    let cartContainer = document.querySelector(".cart_container");
-    if (cartContainer) {
-      cartContainer.scrollIntoView({ behavior: "smooth" });
-    }
+  let dlg = document.getElementById("cart_dialog");
+  if (dlg && typeof dlg.showModal == "function") {
+    dlg.showModal();
   }
 }
 
-// === WARENKORB SCHLIESSEN (MOBIL) ===
 function closeCart() {
-  let cartDialog = document.getElementById("cart_dialog");
-  if (cartDialog && cartDialog.open) {
-    cartDialog.close();
+  let dlg = document.getElementById("cart_dialog");
+  if (dlg && typeof dlg.close == "function") {
+    dlg.close();
   }
 }
 
-// === MOBILEN WARENKORB-BUTTON AKTUALISIEREN ===
+// === MOBILER BUTTON TEXT ===
 function updateMobileCartButton(total) {
-  let cartButton = document.getElementById("open_cart_btn");
-  if (!cartButton) return;
+  let btn = document.getElementById("open_cart_btn");
+  if (!btn) return;
 
-  if (typeof total !== "number") {
+  let count = 0;
+  for (let i = 0; i < cartAmounts.length; i++) {
+    count = count + cartAmounts[i];
+  }
+
+  if (total == undefined) {
     let subtotal = 0;
     for (let i = 0; i < cartItems.length; i++) {
       subtotal = subtotal + cartItems[i].price * cartAmounts[i];
     }
-    total = subtotal + (cartItems.length > 0 ? 5 : 0);
+    let shipping = cartItems.length > 0 ? 5 : 0;
+    total = subtotal + shipping;
   }
 
-  if (cartItems.length > 0) {
-    cartButton.textContent = "Warenkorb · " + total.toFixed(2) + " €";
+  if (count > 0) {
+    btn.textContent = "Warenkorb (" + count + ") • " + total.toFixed(2) + " €";
   } else {
-    cartButton.textContent = "Warenkorb";
+    btn.textContent = "Waranekorb";
   }
+}
+
+// === SPEICHERN + RENDERN ===
+function saveAndRenderAll() {
+  saveToStorage();
+  renderCartDesktop();
+  renderCartDialog();
+  renderCartSummary();
 }
