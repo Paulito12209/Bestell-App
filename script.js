@@ -1,7 +1,7 @@
 // === VARIABLEN ===
 let cartItems = []; // Artikel im Warenkorb
 let cartAmounts = []; // Mengen passend zu cartItems
-let orderPlaced = false; // Flag für Bestellbestätigung
+let orderPlaced = false; // Anzeige für Bestellbestätigung
 
 // === INIT FUNKTION ===
 function init() {
