@@ -8,7 +8,7 @@ function getMenuItem(menuIndex) {
           <p>${menuItems[menuIndex].description}</p>
           <p class="menu_price">${menuItems[menuIndex].price.toFixed(2)} €</p>
         </div>
-        <button type="button" aria-label="hinzufügen" onclick="addToCart(${menuIndex})">+</button>
+        <button type="button" aria-label="Zum Warenkorb hinzufügen" onclick="addToCart(${menuIndex})">+</button>
       </div>
     </div>
   `;
@@ -29,7 +29,7 @@ function getCartItem(cartIndex) {
           <p>${(cartItems[cartIndex].price * cartAmounts[cartIndex]).toFixed(
             2
           )} €</p>
-          <button onclick="removeFromCart(${cartIndex})"><img src="assets/icons/trash-can.png" alt="entfernen" /></button>
+          <button type="button" aria-label="Artikel entfernen" onclick="removeFromCart(${cartIndex})"><img src="assets/icons/trash-can.png" alt="entfernen" /></button>
         </div>
       </div>
     </div>

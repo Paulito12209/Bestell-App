@@ -17,20 +17,20 @@
   <body onload="init()">
     <header class="paddings">
       <nav class="navigation">
-        <img src="assets/icons/Logo.png" alt="Logo" />
+        <img src="assets/icons/Logo.png" alt="Bestell App Logo" />
         <img src="assets/icons/burger-bar.png" alt="Menu-Icon" />
       </nav>
     </header>
 
     <main class="main_container">
       <!-- Linke Spalte -->
-      <section class="main_content">
+      <section class="main_content" aria-labelledby="restaurant-heading">
         <!-- Cover Bild vom Restaurant -->
         <div class="restaurant_cover_container">
           <img
             class="restaurant_cover"
             src="assets/img/china-restaurant-cover.png"
-            alt="Restaurant"
+            alt="Restaurant Banner"
           />
           <img
             class="restaurant_logo"
@@ -50,7 +50,10 @@
           <!-- Kategorie-Header: Hauptgerichte -->
           <div>
             <div class="paddings categories">
-              <img src="assets/icons/meal-arrow.png" alt="" />
+              <img
+                src="assets/icons/meal-arrow.png"
+                alt="Gericht-Beispiel für Hauptgerichte"
+              />
               <h4>Hauptgerichte</h4>
             </div>
           </div>
@@ -70,15 +73,17 @@
           <button
             id="open_cart_btn"
             class="mobile_cart_btn"
+            type="button"
             onclick="showCart()"
+            aria-controls="cart_dialog"
           >
-            Warenkorb
+            > Warenkorb
           </button>
         </div>
       </section>
 
       <!-- Rechte Spalte: Desktop-Warenkorb -->
-      <section class="cart_container">
+      <section class="cart_container" aria-labelledby="cart-heading">
         <div class="cart_content">
           <h2>Warenkorb</h2>
           <div class="cart_divider"></div>
@@ -90,7 +95,7 @@
       </section>
 
       <!-- Mobiler Warenkorb als Dialog -->
-      <dialog id="cart_dialog">
+      <dialog id="cart_dialog" aria-labelledby="cart-dialog-title">
         <div class="cart_content">
           <button
             id="dialog_close_btn"
