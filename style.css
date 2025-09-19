@@ -20,6 +20,10 @@ header img {
   width: 100%;
 }
 
+.restaurant_cover_container {
+  position: relative;
+}
+
 .restaurant_cover {
   height: 300px;
   width: 100%;
@@ -27,8 +31,9 @@ header img {
   position: relative;
 }
 .restaurant_logo {
-  top: 340px;
-  left: 36.66%;
+  position: absolute;
+  top: 260px;
+  left: 50%;
   height: 80px;
   border: 1px solid black;
   border-radius: 50%;
@@ -38,7 +43,7 @@ header img {
   background-color: rgb(253, 252, 251);
 }
 .restaurant_info {
-  height: 80px;
+  height: 140px;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -71,6 +76,7 @@ section span {
   height: 160px;
   width: 100%;
   object-fit: cover;
+  border-radius: 16px;
 }
 .category_cover h3 {
   padding-left: 24px;
@@ -85,6 +91,10 @@ section span {
   display: flex;
   justify-content: space-between;
   border: 1px solid #f1decf;
+  border-radius: 16px;
+}
+.menu_box:hover {
+  background-color: #ecd6c3;
 }
 .menu_box button {
   height: 32px;
@@ -95,6 +105,7 @@ section span {
   border-left: 1px solid #f1decf;
   border-top: none;
   border-right: none;
+  border-top-right-radius: 16px;
 }
 .menu_info {
   display: flex;
