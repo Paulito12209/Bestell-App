@@ -3,26 +3,31 @@
   .paddings {
     padding: 8px 16px;
   }
+
   .menu_paddings {
     display: flex;
     flex-direction: column;
     padding: 0 16px 16px 16px;
     gap: 8px;
-   
   }
+
   .restaurant_info h1 {
     font-size: 32px;
   }
+
   .restaurant_info span {
     font-size: 16px;
   }
+
   .cart_container {
     display: none;
   }
+
   .mobile_cart_btn {
     display: block;
     margin: 0px auto 16px;
   }
+
   dialog {
     width: min(100vw - 16px, 420px);
     max-width: 100vw;
@@ -35,9 +40,11 @@
     transform: translate(-50%, -50%);
     overflow-x: hidden;
   }
+
   dialog::backdrop {
     background: rgba(0, 0, 0, 0.4);
   }
+
   dialog .cart_content {
     padding: 12px;
     position: relative;
@@ -46,6 +53,7 @@
     overflow-x: hidden;
     box-sizing: border-box;
   }
+
   .cart_list,
   .cart_content,
   .cart_buttons,
@@ -54,9 +62,11 @@
   .cart_total {
     word-wrap: break-word;
   }
+
   .cart_content h2 {
     font-size: 28px;
   }
+  
   .cart_buttons button {
     font-size: 14px;
   }
