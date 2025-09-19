@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="styles/shopping_cart.css" />
     <link rel="stylesheet" href="styles/general.css" />
     <link rel="stylesheet" href="styles/responsive.css" />
-    <link rel="icon" href="assets/icons/android-chrome-512x512.png" type="image/png" />
+    <link
+      rel="icon"
+      href="assets/icons/android-chrome-512x512.png"
+      type="image/png"
+    />
     <title>Bestell App</title>
   </head>
   <body onload="init()">
@@ -23,8 +27,16 @@
       <section class="main_content">
         <!-- Cover Bild vom Restaurant -->
         <div class="restaurant_cover_container">
-          <img class="restaurant_cover" src="assets/img/china-restaurant-cover.png" alt="Restaurant" />
-          <img class="restaurant_logo" src="assets/icons/android-chrome-512x512.png" alt="Restaurant Logo" />
+          <img
+            class="restaurant_cover"
+            src="assets/img/china-restaurant-cover.png"
+            alt="Restaurant"
+          />
+          <img
+            class="restaurant_logo"
+            src="assets/icons/android-chrome-512x512.png"
+            alt="Restaurant Logo"
+          />
         </div>
 
         <!-- Hauptkarte (1440px Begrenzung) -->
@@ -32,7 +44,6 @@
           <div class="paddings restaurant_info">
             <h1>China Restaurant</h1>
             <span>Bewertung (4,2 von 5 Sternen)</span>
-            <span>Lieferinfo: ab 20,00 € frei · Lieferzeit ~ 30–45 Min</span>
           </div>
           <hr />
 
@@ -56,7 +67,13 @@
           <div id="menu_list" class="menu_paddings"></div>
 
           <!-- Mobiler Button: direkt unter dem letzten Gericht -->
-          <button id="open_cart_btn" class="mobile_cart_btn" onclick="showCart()">Warenkorb</button>
+          <button
+            id="open_cart_btn"
+            class="mobile_cart_btn"
+            onclick="showCart()"
+          >
+            Warenkorb
+          </button>
         </div>
       </section>
 
@@ -75,7 +92,14 @@
       <!-- Mobiler Warenkorb als Dialog -->
       <dialog id="cart_dialog">
         <div class="cart_content">
-          <button id="dialog_close_btn" class="dialog_close" aria-label="Schließen" onclick="closeCart()">×</button>
+          <button
+            id="dialog_close_btn"
+            class="dialog_close"
+            aria-label="Schließen"
+            onclick="closeCart()"
+          >
+            ×
+          </button>
           <h2>Warenkorb</h2>
           <div class="cart_divider"></div>
           <div class="cart_list" id="cart_list_dialog"></div>

@@ -68,8 +68,7 @@ function getOrderActions() {
 
 function getOrderSuccess() {
   return `
-    <div id="order_success" class="order_success" role="status">
-      ✅ Deine Bestellung wurde aufgenommen. Vielen Dank!
+    <div id="order_success" class="order_success" ><p>✅</p><p>Deine Bestellung wurde aufgenommen. Vielen Dank!</p>
     </div>
   `;
 }
