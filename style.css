@@ -16,6 +16,7 @@ header img {
   display: flex;
   min-height: 100vh;
 }
+
 .main_content {
   width: 100%;
 }
@@ -23,18 +24,20 @@ header img {
 .restaurant_cover_container {
   position: relative;
 }
+
 .restaurant_cover {
   height: 300px;
   width: 100%;
   object-fit: cover;
 }
+
 .restaurant_logo {
   position: absolute;
   left: 50%;
   bottom: -40px;
   transform: translateX(-50%);
   height: 80px;
-  border: 1px solid black;
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 50%;
   background: #fff;
 }
@@ -42,6 +45,7 @@ header img {
 .restaurant_card {
   background-color: rgb(253, 252, 251);
 }
+
 .restaurant_info {
   min-height: 120px;
   display: flex;
@@ -53,9 +57,11 @@ header img {
 section h1 {
   font-size: 40px;
 }
+
 section h4 {
   color: #7b807d;
 }
+
 section span {
   font-size: 20px;
   color: #ff8000;
@@ -68,6 +74,7 @@ section span {
   gap: 8px;
   padding: 8px;
 }
+
 .categories img {
   height: 24px;
 }
@@ -78,6 +85,7 @@ section span {
   object-fit: cover;
   border-radius: 16px;
 }
+
 .category_cover h3 {
   padding-left: 24px;
 }
@@ -87,16 +95,19 @@ section span {
   flex-direction: column;
   gap: 8px;
 }
+
 .menu_box {
   display: flex;
   justify-content: space-between;
   border: 1px solid #f1decf;
   border-radius: 16px;
 }
+
 .menu_box:hover {
   background-color: #f8efe3;
   transform: scale(1.01);
 }
+
 .menu_box button {
   height: 32px;
   width: 32px;
@@ -109,17 +120,20 @@ section span {
   border-right: none;
   border-top-right-radius: 16px;
 }
+
 .menu_box button:hover {
   cursor: pointer;
   color: white;
   background-color: #ff8000;
 }
+
 .menu_info {
   display: flex;
   flex-direction: column;
   padding: 16px 24px;
   gap: 8px;
 }
+
 .menu_price {
   color: #f08833;
   font-weight: bold;
