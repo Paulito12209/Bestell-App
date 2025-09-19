@@ -47,7 +47,6 @@
 }
 
 /* Verhindert horizontales Scrollen, bis 320px tauglich */
-html,
-body {
+html {
   overflow-x: hidden;
 }
