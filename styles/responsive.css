@@ -1,11 +1,27 @@
 /* === RESPONSIV ab 768px === */
 @media (max-width: 768px) {
+  .paddings {
+    padding: 8px 16px;
+  }
+  .menu_paddings {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px 16px 16px;
+    gap: 8px;
+   
+  }
+  .restaurant_info h1 {
+    font-size: 32px;
+  }
+  .restaurant_info span {
+    font-size: 16px;
+  }
   .cart_container {
     display: none;
   }
   .mobile_cart_btn {
     display: block;
-    margin: 0px auto 40px;
+    margin: 0px auto 16px;
   }
   dialog {
     width: min(100vw - 16px, 420px);
