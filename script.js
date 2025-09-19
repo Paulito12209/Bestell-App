@@ -1,6 +1,6 @@
 // === VARIABLEN ===
 let cartItems = []; // Artikel im Warenkorb
-let cartAmounts = []; // Mengen passend zu cartItems
+let cartAmounts = []; // Menge passend zu cartItems
 let orderPlaced = false; // Anzeige für Bestellbestätigung
 
 // === INIT FUNKTION ===
@@ -116,7 +116,7 @@ function renderCartSummary() {
   updateMobileCartButton(total);
 }
 
-// === HILFE: INDEX NACH ID FINDEN ===
+// === ITERATION STÜTZE: INDEX NACH ID FINDEN ===
 function findCartIndexById(id) {
   for (let i = 0; i < cartItems.length; i++) {
     if (cartItems[i].id == id) return i;
