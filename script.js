@@ -91,19 +91,24 @@ function renderCartDialog() {
 
 // === ZUSAMMENFASSUNG RENDERN ===
 function renderCartSummary() {
+  // 1. Zwischensumme berechnen
   let subtotal = 0;
   for (let i = 0; i < cartItems.length; i++) {
     subtotal = subtotal + cartItems[i].price * cartAmounts[i];
   }
 
+  // 2. Lieferkosten bestimmen mit ternärem Operator
   let shipping = cartItems.length > 0 ? 5 : 0;
+  //                       Bedingung↑  ↑Ja  ↑Nein
   let total = subtotal + shipping;
 
+  // 3. HTML mit weiteren ternären Operatoren generieren
   let cartCosts = document.getElementById("cart_costs");
   if (cartCosts) {
     cartCosts.innerHTML =
       getCartSummary(subtotal, shipping, total) +
       (orderPlaced ? getOrderSuccess() : "");
+      //↑ Bedingung ↑ Ja (Erfolgsmeldung) ↑ Nein (nichts)
   }
 
   let cartCostsDialog = document.getElementById("cart_costs_dialog");
@@ -195,20 +200,24 @@ function updateMobileCartButton(total) {
   let btn = document.getElementById("open_cart_btn");
   if (!btn) return;
 
+  // 1. Gesamtanzahl der Artikel zählen
   let count = 0;
   for (let i = 0; i < cartAmounts.length; i++) {
     count = count + cartAmounts[i];
   }
 
+  // 2. Total berechnen, falls nicht übergeben
   if (total == undefined) {
     let subtotal = 0;
     for (let i = 0; i < cartItems.length; i++) {
       subtotal = subtotal + cartItems[i].price * cartAmounts[i];
     }
     let shipping = cartItems.length > 0 ? 5 : 0;
+    // Wieder der gleiche ternäre Operator ↑
     total = subtotal + shipping;
   }
 
+  // 3. Button-Text mit ternärem Operator setzen
   if (count > 0) {
     btn.textContent = "Warenkorb (" + count + ") • " + total.toFixed(2) + " €";
   } else {
