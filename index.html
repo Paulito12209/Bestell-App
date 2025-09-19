@@ -95,12 +95,13 @@
       </section>
 
       <!-- Mobiler Warenkorb als Dialog -->
-      <dialog id="cart_dialog" aria-labelledby="cart-dialog-title">
+      <dialog id="cart_dialog" aria-labelledby="cart-dialog-title" tabindex="-1">
         <div class="cart_content">
           <button
             id="dialog_close_btn"
             class="dialog_close"
-            aria-label="Schließen"
+            type="button"
+            aria-label="Warenkorb Schließen"
             onclick="closeCart()"
           >
             ×
