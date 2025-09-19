@@ -19,6 +19,20 @@
     font-size: 16px;
   }
 
+  .menu_info h3 {
+    font-size: 18px;
+  }
+
+  .menu_info p {
+    font-size: 14px;
+  }
+
+  .menu_box button {
+    height: 28px;
+    width: 28px;
+    font-size: 20px;
+  }
+
   .cart_container {
     display: none;
   }
@@ -66,7 +80,7 @@
   .cart_content h2 {
     font-size: 28px;
   }
-  
+
   .cart_buttons button {
     font-size: 14px;
   }
