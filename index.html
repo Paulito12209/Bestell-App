@@ -75,15 +75,13 @@
       <!-- Mobiler Warenkorb als Dialog -->
       <dialog id="cart_dialog">
         <div class="cart_content">
+          <button id="dialog_close_btn" class="dialog_close" aria-label="Schließen" onclick="closeCart()">×</button>
           <h2>Warenkorb</h2>
           <div class="cart_divider"></div>
           <div class="cart_list" id="cart_list_dialog"></div>
           <div class="cart_divider"></div>
           <div id="cart_costs_dialog"></div>
           <div id="order_actions_dialog"></div>
-          <div class="cart_buttons paddings">
-            <button id="close_cart_btn" onclick="closeCart()">Schließen</button>
-          </div>
         </div>
       </dialog>
     </main>
