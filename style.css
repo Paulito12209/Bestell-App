@@ -62,7 +62,7 @@ section span {
 }
 
 .categories {
-  background-color: #faf5f3;
+  background-color: #f8efe3;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -76,6 +76,7 @@ section span {
   height: 160px;
   width: 100%;
   object-fit: cover;
+  border-radius: 16px;
 }
 .category_cover h3 {
   padding-left: 24px;
@@ -90,16 +91,28 @@ section span {
   display: flex;
   justify-content: space-between;
   border: 1px solid #f1decf;
+  border-radius: 16px;
+}
+.menu_box:hover {
+  background-color: #f8efe3;
+  transform: scale(1.01);
 }
 .menu_box button {
   height: 32px;
   width: 32px;
+  font-size: 24px;
   color: #ff8000;
   background-color: white;
   border-bottom: 1px solid #f1decf;
   border-left: 1px solid #f1decf;
   border-top: none;
   border-right: none;
+  border-top-right-radius: 16px;
+}
+.menu_box button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #ff8000;
 }
 .menu_info {
   display: flex;

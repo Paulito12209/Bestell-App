@@ -5,7 +5,7 @@
   }
   .mobile_cart_btn {
     display: block;
-    margin: 24px auto 40px;
+    margin: 0px auto 40px;
   }
   dialog {
     width: min(100vw - 16px, 420px);

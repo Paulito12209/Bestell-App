@@ -44,6 +44,7 @@
   /* color: #ff8b02; */
   background-color: white;
   border: none;
+  cursor: pointer;
 }
 .cart_buttons button img {
   height: 16px;
@@ -97,6 +98,7 @@
   background: #ff8b02;
   color: #fff;
   border: none;
+  cursor: pointer;
 }
 .mobile_cart_btn {
   display: none;
@@ -105,6 +107,7 @@
   background: #ff8b02;
   color: #fff;
   border: none;
+  cursor: pointer;
 }
 
 /* Dialog-Schließen-Button: schwarzes × oben rechts */
@@ -121,4 +124,9 @@
   color: #000;
   font-size: 24px;
   cursor: pointer;
+}
+
+.dialog_close:hover {
+  background: #dedbdb;
+  border-radius: 50%;
 }
