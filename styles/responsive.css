@@ -1,5 +1,6 @@
 /* === RESPONSIV ab 768px === */
 @media (max-width: 768px) {
+  /* == GENERAL == */
   .paddings {
     padding: 8px 16px;
   }
@@ -11,12 +12,21 @@
     gap: 8px;
   }
 
+  /* == MAIN == */
+  .restaurant_cover {
+    height: 240px;
+  }
+
   .restaurant_info h1 {
     font-size: 32px;
   }
 
   .restaurant_info span {
     font-size: 16px;
+  }
+
+  .category_cover img {
+    height: 120px;
   }
 
   .menu_info h3 {
@@ -33,6 +43,7 @@
     font-size: 20px;
   }
 
+  /* == CART == */
   .cart_container {
     display: none;
   }
