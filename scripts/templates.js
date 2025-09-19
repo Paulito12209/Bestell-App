@@ -58,9 +58,7 @@ function getCartSummary(subtotal, shipping, total) {
 }
 
 function getOrderActions() {
-  return `
-    <div class="cart_divider"></div>
-    <div class="cart_order_button paddings">
+  return `<div class="cart_order_button paddings">
       <button onclick="placeOrder()">Bestellen</button>
     </div>
   `;
