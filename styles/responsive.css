@@ -21,7 +21,7 @@
   }
   dialog .cart_content {
     padding: 12px;
-    position: static;
+    position: relative;
     max-height: 80vh;
     overflow: auto;
   }
